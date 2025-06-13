@@ -152,7 +152,6 @@ rec_engine_t *rec_get_engine(rec_t *rec, char *engine_name)
     /* freed in rec_deinit */
     new_engine = malloc(sizeof(rec_engine_t));
     if (new_engine == NULL) {
-	fprintf(stderr, "%s: out of memory\n", __FUNCTION__);
 	return NULL;
     }
     rec_engine_init(new_engine, rec, engine_name);
@@ -176,7 +175,6 @@ rec_mode_t *rec_get_mode(rec_t *rec, char *mode_name)
     /* freed in rec_deinit */
     new_mode = malloc(sizeof(rec_mode_t));
     if (new_mode == NULL) {
-	fprintf(stderr, "%s: out of memory\n", __FUNCTION__);
 	return NULL;
     }
     rec_mode_init(new_mode, mode_name);
@@ -198,7 +196,6 @@ int rec_register_callback(rec_t *rec, action_type_t type, rec_cb_fun_t cb_fun, v
     /* freed in rec_deinit */
     cb = malloc(sizeof(rec_callback_t));
     if (cb == NULL) {
-	fprintf(stderr, "%s: out of memory\n", __FUNCTION__);
 	return ENOMEM;
     }
     rec_callback_init(cb, cb_fun, data);
@@ -269,7 +266,6 @@ action_t *recognize_stroke(rec_t *rec, stroke_t *stroke)
 
     stroke->classifications = malloc(rec->engines.num_engines * sizeof(void *));
     if (stroke->classifications == NULL) {
-	fprintf(stderr, "%s: Out of memory.\n", __FUNCTION__);
 	return NULL;
     }
 

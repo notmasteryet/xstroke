@@ -103,7 +103,6 @@ int gesture_list_append(gesture_list_t *list, gesture_t *gesture)
 	if (new_gestures) {
 	    list->gestures = new_gestures;
 	} else {
-	    fprintf(stderr, "%s: out of memory\n", __FUNCTION__);
 	    list->max_gestures -= GESTURE_LIST_GROWTH_INC;
 	    list->num_gestures--;
 	    return ENOMEM;

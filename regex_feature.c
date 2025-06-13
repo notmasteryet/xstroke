@@ -59,7 +59,6 @@ regex_t *regex_feature_alloc(char *regex_str)
 
     regex = malloc(sizeof(regex_t));
     if (regex == NULL) {
-	fprintf(stderr, "%s: Out of memory.\n", __FUNCTION__);
 	return NULL;
     }
 

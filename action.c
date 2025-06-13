@@ -54,7 +54,6 @@ int action_add_item(action_t *action, action_item_t item)
 			    sizeof(action_item_t) * action->num_items);
     if (action->items == NULL) {
 	action->num_items = 0;
-	fprintf(stderr, "%s: out of memory.\n", __FUNCTION__);
 	return ENOMEM;
     }
     action->items[action->num_items - 1] = item;

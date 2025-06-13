@@ -18,6 +18,7 @@
 
 #include "stroke.h"
 
+#define NO_LIBS
 #define REC_LIB_PREFIX "rec_"
 #define REC_ENGINE_FUNCS_SYMBOL "engine_funcs"
 

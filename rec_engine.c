@@ -138,7 +138,7 @@ int rec_engine_init(rec_engine_t *engine, rec_t *rec, char *engine_name)
 	    }
 	}
     }
-
+#ifndef NO_LIBS
     if (engine->funcs == NULL) {
 	sprintf_alloc(&libname, "%s%s", REC_LIB_PREFIX, engine_name);
 	dlh = dlopen(libname, RTLD_LAZY);
@@ -163,7 +163,7 @@ int rec_engine_init(rec_engine_t *engine, rec_t *rec, char *engine_name)
 	}
 	free(libname);
     }
-
+#endif
     if (engine->funcs->priv_alloc) {
 	err = (engine->funcs->priv_alloc)(engine);
 	if (err) {
@@ -283,7 +283,6 @@ int rec_engine_list_append(rec_engine_list_t *list, rec_engine_t *engine)
 
     new_engines = realloc(list->engines, list->num_engines * sizeof(rec_engine_t *));
     if (new_engines == NULL) {
-	fprintf(stderr, "%s: Out of memory.\n", __FUNCTION__);
 	list->num_engines--;
 	return ENOMEM;
     }

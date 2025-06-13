@@ -40,9 +40,9 @@ AMDEP_TRUE =
 AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
-#CFLAGS = -Os  -DNO_REGEX -DONLY_GRID_ENGINE -fdata-sections -ffunction-sections -flto
+CFLAGS = -Os  -DNO_REGEX -DONLY_GRID_ENGINE -flto
 #CFLAGS = -g -O0 -DNO_REGEX
-CFLAGS = -g -O0
+#CFLAGS = -g -O0
 CPP = gcc -E
 CPPFLAGS = 
 CYGPATH_W = echo

@@ -133,7 +133,6 @@ void *dir_feature_data_alloc(rec_engine_t *engine, char *feature_data_str)
     char *s, *d;
     char *esc_str = malloc(strlen(feature_data_str)*2 + 1);
     if (esc_str == NULL) {
-	fprintf(stderr, "%s: Out of memory\n", __FUNCTION__);
 	return NULL;
     }
 
@@ -228,7 +227,6 @@ int seg_stroke_init(seg_stroke_t *ss, stroke_t *stroke)
 	/* Freed in seg_stroke_deinit */
 	seg = malloc(sizeof(seg_t));
 	if (seg == NULL) {
-	    fprintf(stderr, "%s: out of memory\n", __FUNCTION__);
 	    break;
 	}
 	err = seg_init_from_stroke_at(seg, stroke, first, &last);
@@ -657,7 +655,6 @@ void dir_classify_stroke_old(rec_engine_t *engine, stroke_t *stroke)
 		seq_max += 10;
 		seq = realloc(seq, seq_max);
 		if (seq == NULL) {
-		    fprintf(stderr, "%s: out of memory", __FUNCTION__);
 		    stroke->classifications[engine->num] = NULL;
 		    return; 
 		}

@@ -49,7 +49,6 @@ int anchor_priv_alloc(rec_engine_t *engine)
 
     priv = malloc(sizeof(anchor_priv_t));
     if (priv == NULL) {
-	fprintf(stderr, "%s: Out of memory\n", __FUNCTION__);
 	return ENOMEM;
     }
 

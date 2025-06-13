@@ -100,7 +100,6 @@ action_key_data_t *action_key_data_alloc(char *key, int press)
 
     data = malloc(sizeof(action_key_data_t));
     if (data == NULL) {
-	fprintf(stderr, "%s: Out of memory", __FUNCTION__);
 	return NULL;
     }
     action_key_data_init(data, key, press);
@@ -147,7 +146,6 @@ action_button_data_t *action_button_data_alloc(int button)
 
     data = malloc(sizeof(action_button_data_t));
     if (data == NULL) {
-	fprintf(stderr, "%s: Out of memory", __FUNCTION__);
 	return NULL;
     }
     action_button_data_init(data, button);
@@ -172,7 +170,6 @@ action_mode_data_t *action_mode_data_alloc(struct rec_mode *mode, int permanent)
 
     data = malloc(sizeof(action_mode_data_t));
     if (data == NULL) {
-	fprintf(stderr, "%s: Out of memory", __FUNCTION__);
 	return NULL;
     }
     action_mode_data_init(data, mode, permanent);
@@ -200,7 +197,6 @@ action_exec_data_t *action_exec_data_alloc(char *exec)
 
     data = malloc(sizeof(action_exec_data_t));
     if (data == NULL) {
-	fprintf(stderr, "%s: Out of memory", __FUNCTION__);
 	return NULL;
     }
     action_exec_data_init(data, exec);
@@ -226,7 +222,6 @@ action_orient_data_t *action_orient_data_alloc(float orientation)
 
     data = malloc(sizeof(action_orient_data_t));
     if (data == NULL) {
-	fprintf(stderr, "%s: Out of memory", __FUNCTION__);
 	return NULL;
     }
     action_orient_data_init(data, orientation);

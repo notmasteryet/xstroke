@@ -1976,7 +1976,6 @@ int rec_lex_initial_file(char *filename)
 
     include_stack = malloc(sizeof(include_stack_t));
     if (include_stack == NULL) {
-	fprintf(stderr, "%s: out of memory\n", __FUNCTION__);
 	return ENOMEM;
     }
 
@@ -2020,7 +2019,6 @@ static int include_stack_init(include_stack_t *stack, char *filename)
 	int dirlen = strrchr(include_stack->filename, '/') - include_stack->filename;
 	stack->filename = malloc(dirlen + 1 + strlen(filename) + 1);
 	if (stack->filename == NULL) {
-	    fprintf(stderr, "%s: out of memory\n", __FUNCTION__);
 	    return ENOMEM;
 	}
 	strncpy(stack->filename, include_stack->filename, dirlen);
@@ -2061,7 +2059,6 @@ static void push_include(include_stack_t **stack, char *filename)
 
     new_top = malloc(sizeof(include_stack_t));
     if (new_top == NULL) {
-	fprintf(stderr, "%s: out of memory\n", __FUNCTION__);
 	return;
     }
 
@@ -2127,7 +2124,6 @@ static char *escaped_string_alloc(char *yytext, int yyleng)
     yytext[yyleng - 1] = '\0';
     new_str = malloc(yyleng-1);
     if (new_str == NULL) {
-	fprintf(stderr, "%s: out of memory\n", __FUNCTION__);
 	return NULL;
     }
     c = new_str;

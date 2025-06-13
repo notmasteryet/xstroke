@@ -13,7 +13,6 @@
    GNU General Public License for more details.
 */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
@@ -48,7 +47,6 @@ int grid_priv_alloc(rec_engine_t *engine)
 
     priv = malloc(sizeof(grid_priv_t));
     if (priv == NULL) {
-	fprintf(stderr, "%s: Out of memory\n", __FUNCTION__);
 	return ENOMEM;
     }
 

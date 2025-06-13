@@ -151,7 +151,6 @@ int rec_mode_list_append(rec_mode_list_t *list, rec_mode_t *mode)
 
     new_modes = realloc(list->modes, list->num_modes * sizeof(rec_mode_t *));
     if (new_modes == NULL) {
-	fprintf(stderr, "%s: out of memory\n", __FUNCTION__);
 	list->num_modes--;
 	return ENOMEM;
     }

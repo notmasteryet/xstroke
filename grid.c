@@ -45,7 +45,6 @@ char *grid_stroke_sequence_alloc(stroke_t *stroke,
 	    seq_size += 10;
 	    seq = realloc(seq, seq_size);
 	    if (seq == NULL) {
-		fprintf(stderr, "%s: Out of memory.\n", __FUNCTION__);
 		free(seq);
 		return strdup("");
 	    }

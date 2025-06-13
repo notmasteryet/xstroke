@@ -57,7 +57,6 @@ void *raw_feature_data_alloc(rec_engine_t *engine, char *feature_data_str)
 
     stroke = malloc(sizeof(stroke_t));
     if (stroke == NULL) {
-	fprintf(stderr, "%s: Out of memory\n", __FUNCTION__);
 	return NULL;
     }
 

@@ -13,7 +13,6 @@
    GNU General Public License for more details.
 */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
 
@@ -49,7 +48,6 @@ int option_list_append(option_list_t *list, option_t *option)
 
     new_options = realloc(list->options, list->num_options * sizeof(option_t));
     if (new_options == NULL) {
-	fprintf(stderr, "%s: Out of memory.\n", __FUNCTION__);
 	list->num_options--;
 	return ENOMEM;
     }

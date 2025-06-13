@@ -82,7 +82,6 @@ int feature_list_append(feature_list_t *list, feature_t *feature)
     new_features = realloc(list->features, list->num_features * sizeof(feature_t));
 
     if (new_features == NULL) {
-	fprintf(stderr, "%s: out of memory\n", __FUNCTION__);
 	list->num_features--;
 	return ENOMEM;
     }

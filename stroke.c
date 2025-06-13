@@ -253,7 +253,6 @@ static void grow_pts(stroke_t *stroke)
     stroke->max_pts += STROKE_GROWTH_INC;
     stroke->pts = realloc(stroke->pts, sizeof(pt_t) * stroke->max_pts);
     if (stroke->pts == NULL) {
-	fprintf(stderr, "%s out of memory\n", __FUNCTION__);
 	stroke->num_pts = 0;
 	stroke->max_pts = 0;		
     }
