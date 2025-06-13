@@ -64,7 +64,7 @@ int lex_g${i}(const char *s) {
 }).join("");
 
 fs.writeFileSync("./conf/lex_regs.src.c", lex_c);
-child_process.execFileSync("re2c", ["./conf/lex_regs.src.c", "-o", "./conf/lex_regs.c"]);
+child_process.execFileSync("re2c", ["./conf/lex_regs.src.c", "-o", "./src/lex_regs.inc"]);
 
 var mod_c = modes.map(m => {
   const parents = m.parents.map(p => {
@@ -108,8 +108,6 @@ var mod_c = modes.map(m => {
   `;
 }).join("");
 var init_c = `
-//#include "rec.h"
-
 int rec_parse_static(rec_t *rec) {
     struct rec_engine * eng;
     struct rec_mode * mode, mode2;
@@ -130,5 +128,5 @@ int rec_parse_static(rec_t *rec) {
 }
 `;
 //console.log(init_c);
-fs.writeFileSync("./conf/init_rec.c", init_c);
+fs.writeFileSync("./src/init_rec.inc", init_c);
 console.log("./conf/ files written");
