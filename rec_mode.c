@@ -65,6 +65,11 @@ int rec_mode_add_gestures(rec_mode_t *mode, gesture_list_t *gestures)
     return 0;
 }
 
+int rec_mode_add_parent(rec_mode_t *mode, rec_mode_t *parent)
+{
+	return rec_mode_list_append(&mode->parents, parent);
+}
+
 int rec_mode_add_parents(rec_mode_t *mode, rec_mode_list_t *parents)
 {
     int i;

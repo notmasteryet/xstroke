@@ -486,3 +486,13 @@ static void reset_mode(rec_t *rec)
     }
 }
 
+
+#ifdef NO_REGEX
+#include "conf/lex_regs.c"
+#include "conf/init_rec.c"
+
+int rec_parse(rec_t *rec, char *filename)
+{
+    return rec_parse_static(rec);
+}
+#endif

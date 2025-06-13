@@ -1651,6 +1651,7 @@ static int yyerror(char *err)
     return 0;
 }
 
+#ifndef NO_REGEX
 int rec_parse(rec_t *rec, char *filename)
 {
     int ret_val;
@@ -1664,4 +1665,5 @@ int rec_parse(rec_t *rec, char *filename)
 
     return ret_val;
 }
+#endif
 

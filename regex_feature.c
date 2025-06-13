@@ -15,7 +15,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <regex.h>
 
 #include "regex_feature.h"
 #include "sprintf_alloc.h"
@@ -24,6 +23,32 @@
 #include "dmalloc.h"
 #endif
 
+#ifdef NO_REGEX
+regex_t *regex_feature_alloc(char *regex_str)
+{
+    return (void*)regex_str;
+}
+void regex_feature_free(regex_t *regex)
+{
+}
+typedef int (*lex_fn)(char *);
+
+float regex_feature_recognize(regex_t *regex, char *sequence)
+{
+    int res;
+    lex_fn fn;
+
+    fn = (lex_fn)regex;
+    res = fn(sequence);
+
+    if (res == 1)
+	return 0.0f;
+    else
+	return 1.0f;
+}
+
+
+#else
 regex_t *regex_feature_alloc(char *regex_str)
 {
 #define RE_ERR_MSG_LEN 255
@@ -69,3 +94,4 @@ float regex_feature_recognize(regex_t *regex, char *sequence)
     else
 	return 1.0f;
 }
+#endif

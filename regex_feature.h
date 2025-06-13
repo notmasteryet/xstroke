@@ -16,7 +16,11 @@
 #ifndef REGEX_FEATURE_H
 #define REGEX_FEATURE_H
 
+#ifdef NO_REGEX
+typedef void *regex_t;
+#else
 #include <regex.h>
+#endif
 
 regex_t *regex_feature_alloc(char *regex_str);
 void regex_feature_free(regex_t *regex);

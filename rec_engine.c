@@ -39,6 +39,7 @@ struct engine_func_map
 typedef struct engine_func_map engine_func_map_t;
 
 static engine_func_map_t static_engines[] = {
+#ifndef ONLY_GRID_ENGINE    
     { "anchor", 
       {
 	  anchor_priv_alloc,
@@ -78,6 +79,7 @@ static engine_func_map_t static_engines[] = {
 	  dir_set_option
       }
     },
+#endif
     { "grid", 
       {
 	  grid_priv_alloc,
@@ -91,6 +93,7 @@ static engine_func_map_t static_engines[] = {
 	  grid_set_option
       }
     },
+#ifndef ONLY_GRID_ENGINE    
     { "raw", 
       {
 	  raw_priv_alloc,
@@ -104,6 +107,7 @@ static engine_func_map_t static_engines[] = {
 	  raw_set_option
       }
     }
+#endif
 };
 static int num_static_engines = sizeof(static_engines) / sizeof(engine_func_map_t);
 
