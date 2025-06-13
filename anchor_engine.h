@@ -20,11 +20,11 @@
 #include "stroke.h"
 
 /* How wide are the grid edges, (in percent of width/height) */
-#define ANCHOR_DEFAULT_BORDER_WIDTH_PERCENT 5.0
+#define ANCHOR_DEFAULT_BORDER_WIDTH_PERCENT 5.0f
 
 struct anchor_priv
 {
-    double border_width_ratio;
+    float border_width_ratio;
 };
 typedef struct anchor_priv anchor_priv_t;
 
@@ -38,7 +38,7 @@ void anchor_classify_stroke(rec_engine_t *engine, stroke_t *stroke);
 char *anchor_classification_str_alloc(rec_engine_t *engine, stroke_t *stroke);
 void anchor_free_classification(rec_engine_t *engine, stroke_t *stroke);
 
-double anchor_recognize_stroke(rec_engine_t *engine, stroke_t *stroke,
+float anchor_recognize_stroke(rec_engine_t *engine, stroke_t *stroke,
 			       void *feature_data);
 
 int anchor_set_option(rec_engine_t *engine, char *option, char *value);

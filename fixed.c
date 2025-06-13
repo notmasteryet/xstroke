@@ -13,12 +13,12 @@
    GNU General Public License for more details.
 */
 
-int f_to_fixed(double val, int precision)
+int f_to_fixed(float val, int precision)
 {
     return val * (1L << precision);
 }
 
-double fixed_to_f(long int val, int precision)
+float fixed_to_f(long int val, int precision)
 {
     return val / (1L << precision);
 }

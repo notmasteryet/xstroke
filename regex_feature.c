@@ -58,14 +58,14 @@ void regex_feature_free(regex_t *regex)
     free(regex);
 }
 
-double regex_feature_recognize(regex_t *regex, char *sequence)
+float regex_feature_recognize(regex_t *regex, char *sequence)
 {
     int res;
 
     res = regexec(regex, sequence, 0, 0, 0);
 
     if (res == REG_NOMATCH)
-	return 0.0;
+	return 0.0f;
     else
-	return 1.0;
+	return 1.0f;
 }

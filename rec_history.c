@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define M_PI_16 (M_PI_4 / 4.0)
+#define M_PI_16 (M_PI_4 / 4.0f)
 
 #include "rec_history.h"
 
@@ -27,7 +27,7 @@
 
 int rec_history_init(rec_history_t *history, int x, int y,
 		     int width, int height,
-		     double orientation)
+		     float orientation)
 {
     int i;
 
@@ -101,7 +101,7 @@ void rec_history_update_size(rec_history_t *history, int width, int height)
     history->height /= RH_SIZE_SAMPLES;
 }
 
-void rec_history_nudge_orientation(rec_history_t *history, double correction)
+void rec_history_nudge_orientation(rec_history_t *history, float correction)
 {
     int i;
 
@@ -110,9 +110,9 @@ void rec_history_nudge_orientation(rec_history_t *history, double correction)
     }
     history->orientation_history[i] = history->orientation + correction;
 
-    history->orientation = 0.0;
+    history->orientation = 0.0f;
     for (i=0; i < RH_ORIENTATION_SAMPLES; i++) {
 	history->orientation += history->orientation_history[i];
     }
-    history->orientation /= (double) RH_ORIENTATION_SAMPLES;
+    history->orientation /= (float) RH_ORIENTATION_SAMPLES;
 }

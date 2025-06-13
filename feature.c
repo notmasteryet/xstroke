@@ -42,7 +42,7 @@ void feature_deinit(feature_t *feature)
     feature->engine = NULL;
 }
 
-double feature_recognize(feature_t *feature, stroke_t *stroke)
+float feature_recognize(feature_t *feature, stroke_t *stroke)
 {
     return rec_engine_recognize_stroke(feature->engine, stroke, feature->data);
 }

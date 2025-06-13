@@ -59,7 +59,7 @@ int action_item_exec_init(action_item_t *item, char *exec)
     return item->data ? 0 : ENOMEM;
 }
 
-int action_item_orient_init(action_item_t *item, double orientation)
+int action_item_orient_init(action_item_t *item, float orientation)
 {
     item->type = ACTION_ORIENT;
     item->data = action_orient_data_alloc(orientation);
@@ -220,7 +220,7 @@ void action_exec_data_deinit(action_exec_data_t *exec_data)
     exec_data->exec = NULL;
 }
 
-action_orient_data_t *action_orient_data_alloc(double orientation)
+action_orient_data_t *action_orient_data_alloc(float orientation)
 {
     action_orient_data_t *data;
 
@@ -233,7 +233,7 @@ action_orient_data_t *action_orient_data_alloc(double orientation)
     return data;
 }
 
-int action_orient_data_init(action_orient_data_t *orient_data, double orientation)
+int action_orient_data_init(action_orient_data_t *orient_data, float orientation)
 {
     orient_data->orientation = orientation;
     return 0;

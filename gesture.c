@@ -39,15 +39,15 @@ void gesture_deinit(gesture_t *gesture)
     feature_list_deinit(&gesture->features);
 }
 
-double gesture_recognize(gesture_t *gesture, stroke_t *stroke)
+float gesture_recognize(gesture_t *gesture, stroke_t *stroke)
 {
-    double probability = 1.0;
-    double feature_probability;
+    float probability = 1.0f;
+    float feature_probability;
     int engine_num;
     int i;
 
     if (gesture->features.num_features == 0) {
-	return 0.0;
+	return 0.0f;
     }
     
     for (i=0; i < gesture->features.num_features; i++) {
@@ -56,7 +56,7 @@ double gesture_recognize(gesture_t *gesture, stroke_t *stroke)
 						stroke);
 	/* For now, assume independent features */
 	probability *= feature_probability;
-	if (probability == 0.0)
+	if (probability == 0.0f)
 	    break;
     }
 

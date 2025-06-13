@@ -21,7 +21,7 @@ struct args
     char *alphabet;
     int lograw;
     int rotation;
-    double rotation_limit;
+    float rotation_limit;
     char *verify;
 };
 typedef struct args args_t;
@@ -33,7 +33,7 @@ typedef struct args args_t;
 #define ARGS_DEFAULT_ALPHABET "./conf/alphabet"
 #define ARGS_DEFAULT_LOGRAW 0
 #define ARGS_DEFAULT_ROTATION 1
-#define ARGS_DEFAULT_ROTATION_LIMIT (M_PI_4 / 4.0)
+#define ARGS_DEFAULT_ROTATION_LIMIT (M_PI_4 / 4.0f)
 #define ARGS_DEFAULT_VERIFY NULL
 
 int args_init(args_t *args);

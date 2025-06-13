@@ -39,7 +39,7 @@ void raw_classify_stroke(rec_engine_t *engine, stroke_t *stroke);
 char *raw_classification_str_alloc(rec_engine_t *engine, stroke_t *stroke);
 void raw_free_classification(rec_engine_t *engine, stroke_t *stroke);
 
-double raw_recognize_stroke(rec_engine_t *engine, stroke_t *stroke,
+float raw_recognize_stroke(rec_engine_t *engine, stroke_t *stroke,
 			     void *feature_data);
 
 int raw_set_option(rec_engine_t *engine, char *name, char *value);

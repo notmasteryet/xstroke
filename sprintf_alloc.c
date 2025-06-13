@@ -85,9 +85,9 @@ static int vsprintf_alloc(char **str, const char *fmt, va_list ap)
 	if (n > -1 && n < size)
 	    return n;
 	/* Else try again with more space. */
-	if (n > -1)    /* glibc 2.1 */
+	if (n > -1)    /* glibc 2.1f */
 	    size = n+1; /* precisely what is needed */
-	else           /* glibc 2.0 */
+	else           /* glibc 2.0f */
 	    size *= 2;  /* twice the old size */
 	new_str = realloc(*str, size);
 	if (new_str == NULL) {

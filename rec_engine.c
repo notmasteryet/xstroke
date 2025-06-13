@@ -221,11 +221,11 @@ void rec_engine_free_classification(rec_engine_t *engine, stroke_t *stroke)
     }
 }
 
-double rec_engine_recognize_stroke(rec_engine_t *engine, stroke_t *stroke,
+float rec_engine_recognize_stroke(rec_engine_t *engine, stroke_t *stroke,
 				   void *feature_data)
 {
     if (engine->funcs->recognize_stroke == NULL) {
-	return 1.0;
+	return 1.0f;
     }
 
     return (engine->funcs->recognize_stroke)(engine, stroke, feature_data);

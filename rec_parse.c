@@ -155,7 +155,7 @@ static feature_list_t FEATURE_ERROR = { -1, NULL };
 typedef union YYSTYPE {
   int    ival;
   char  *sval;
-  double dval;
+  float dval;
   rec_mode_t *rec_mode;
   rec_mode_list_t rec_mode_list;
   gesture_list_t gesture_list;
@@ -1312,7 +1312,7 @@ yyreduce:
 #line 249 "rec_parse.y"
     {
 			  /* Convert from degrees to radians */
-			  double orientation = (M_PI / 180.0) * yyvsp[0].ival;
+			  float orientation = (M_PI / 180.0f) * yyvsp[0].ival;
 			  action_item_orient_init(&yyval.action_item, orientation);
 			}
     break;
@@ -1321,7 +1321,7 @@ yyreduce:
 #line 255 "rec_parse.y"
     {
 			  /* Convert from degrees to radians */
-			  double orientation = (M_PI / 180.0) * yyvsp[0].dval;
+			  float orientation = (M_PI / 180.0f) * yyvsp[0].dval;
 			  action_item_orient_init(&yyval.action_item, orientation);
 			}
     break;

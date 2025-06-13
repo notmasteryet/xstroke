@@ -77,7 +77,7 @@ int rec_init(rec_t *rec, args_t *args, int width, int height)
 	return err;
     }
 
-    rec_history_init(&rec->history, width / 2, height / 2, width, height, 0.0);
+    rec_history_init(&rec->history, width / 2, height / 2, width, height, 0.0f);
 
     rec_register_callback(rec, ACTION_MODE, rec_mode_action_cb, rec);
     rec_register_callback(rec, ACTION_KEY, rec_key_action_cb, rec);
@@ -223,11 +223,11 @@ void rec_extend_stroke(rec_t *rec, int x, int y, unsigned long time)
 void rec_end_stroke(rec_t *rec, int x, int y, unsigned long time)
 {
     matrix_t transform;
-    double center_x, center_y;
+    float center_x, center_y;
     action_t *action;
 
-    center_x = rec->stroke.min_x + rec->stroke.width/2.0;
-    center_y = rec->stroke.min_y + rec->stroke.height/2.0;
+    center_x = rec->stroke.min_x + rec->stroke.width/2.0f;
+    center_y = rec->stroke.min_y + rec->stroke.height/2.0f;
 
     if (rec->rotation) {
 	/* X restricts coordinates to 16 bits, so we have 16 more to
@@ -263,7 +263,7 @@ void rec_end_stroke(rec_t *rec, int x, int y, unsigned long time)
 action_t *recognize_stroke(rec_t *rec, stroke_t *stroke)
 {
     action_t *action = NULL;
-    double probability;
+    float probability;
     int i, done;
     char *msg, *a_str, *c_str;
 
@@ -277,7 +277,7 @@ action_t *recognize_stroke(rec_t *rec, stroke_t *stroke)
 	rec_engine_classify_stroke(rec->engines.engines[i], stroke);
     }
 
-    probability = 0.0;
+    probability = 0.0f;
     done = rec_mode_recognize(rec->global_mode, stroke, &action, &probability);
     if (! done) {
 	done = rec_mode_recognize(rec->current_mode, stroke,
@@ -445,7 +445,7 @@ static void rec_orient_action_cb(void *action_data, void *data)
     action_orient_data_t *orient_data = (action_orient_data_t *) action_data;
     stroke_t *stroke;
     pt_t *first_pt, *last_pt;
-    double stroke_orientation, correction;
+    float stroke_orientation, correction;
     
     stroke = &rec->stroke;
     first_pt = &stroke->pts[0];

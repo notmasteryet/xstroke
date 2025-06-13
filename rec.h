@@ -50,7 +50,7 @@ struct rec
     int height;
 
     int rotation;
-    double rotation_limit;
+    float rotation_limit;
 };
 typedef struct rec rec_t;
 

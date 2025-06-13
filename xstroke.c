@@ -73,6 +73,9 @@ int main(int argc, char *argv[])
     rec_extend_stroke(&xstroke.rec, 999, 999, 200);
     rec_end_stroke(&xstroke.rec, 999, 999, 300);
 
+    rec_begin_stroke(&xstroke.rec, 900, 400, 500);
+    rec_extend_stroke(&xstroke.rec, 499, 459, 700);
+    rec_end_stroke(&xstroke.rec, 99, 599, 300);
 
     xstroke_deinit(&xstroke);
     args_deinit(&args);

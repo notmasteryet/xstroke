@@ -33,9 +33,9 @@ int matrix_init(matrix_t *matrix, int precision)
 }
 
 void matrix_set_explicit(matrix_t *matrix,
-			double m00, double m01, double m02,
-			double m10, double m11, double m12,
-			double m20, double m21, double m22)
+			float m00, float m01, float m02,
+			float m10, float m11, float m12,
+			float m20, float m21, float m22)
 {
     matrix->m[0][0] = f_to_fixed(m00, matrix->precision_bits);
     matrix->m[0][1] = f_to_fixed(m01, matrix->precision_bits);
@@ -53,36 +53,36 @@ void matrix_set_explicit(matrix_t *matrix,
 void matrix_set_identity(matrix_t *matrix)
 {
     matrix_set_explicit(matrix,
-			1.0, 0.0, 0.0,
-			0.0, 1.0, 0.0,
-			0.0, 0.0, 1.0);
+			1.0f, 0.0f, 0.0f,
+			0.0f, 1.0f, 0.0f,
+			0.0f, 0.0f, 1.0f);
 }
 
-void matrix_set_translate(matrix_t *matrix, double x_off, double y_off)
+void matrix_set_translate(matrix_t *matrix, float x_off, float y_off)
 {
     matrix_set_explicit(matrix,
-			1.0, 0.0, x_off,
-			0.0, 1.0, y_off,
-			0.0, 0.0, 1.0);
+			1.0f, 0.0f, x_off,
+			0.0f, 1.0f, y_off,
+			0.0f, 0.0f, 1.0f);
 }
 
-void matrix_set_scale(matrix_t *matrix, double x_scale, double y_scale)
+void matrix_set_scale(matrix_t *matrix, float x_scale, float y_scale)
 {
     matrix_set_explicit(matrix,
-			x_scale,     0.0, 0.0,
-			0.0,     y_scale, 0.0,
-			0.0,         0.0, 1.0);
+			x_scale,     0.0f, 0.0f,
+			0.0f,     y_scale, 0.0f,
+			0.0f,         0.0f, 1.0f);
 }
 
-void matrix_set_rotate(matrix_t *matrix, double theta)
+void matrix_set_rotate(matrix_t *matrix, float theta)
 {
     matrix_set_explicit(matrix,
-			cos(theta), -sin(theta), 0.0,
-			sin(theta),  cos(theta), 0.0,
-			0.0,                0.0, 1.0);
+			cos(theta), -sin(theta), 0.0f,
+			sin(theta),  cos(theta), 0.0f,
+			0.0f,                0.0f, 1.0f);
 }
 
-void matrix_set_rotate_about(matrix_t *matrix, double theta, double x, double y)
+void matrix_set_rotate_about(matrix_t *matrix, float theta, float x, float y)
 {
     matrix_t tmp, to_origin, rot, from_origin;
 

@@ -20,6 +20,6 @@
 
 regex_t *regex_feature_alloc(char *regex_str);
 void regex_feature_free(regex_t *regex);
-double regex_feature_recognize(regex_t *regex, char *sequence);
+float regex_feature_recognize(regex_t *regex, char *sequence);
 
 #endif

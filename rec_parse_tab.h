@@ -68,7 +68,7 @@
 typedef union YYSTYPE {
   int    ival;
   char  *sval;
-  double dval;
+  float dval;
   rec_mode_t *rec_mode;
   rec_mode_list_t rec_mode_list;
   gesture_list_t gesture_list;

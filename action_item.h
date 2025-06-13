@@ -68,7 +68,7 @@ typedef struct action_exec_data action_exec_data_t;
 
 struct action_orient_data
 {
-    double orientation;
+    float orientation;
 };
 typedef struct action_orient_data action_orient_data_t;
 
@@ -77,7 +77,7 @@ int action_item_button_init(action_item_t *item, int button);
 int action_item_mode_init(action_item_t *item, struct rec_mode *mode,
 			  int permanent);
 int action_item_exec_init(action_item_t *item, char *exec);
-int action_item_orient_init(action_item_t *item, double orientation);
+int action_item_orient_init(action_item_t *item, float orientation);
 void action_item_deinit(action_item_t *item);
 char *action_item_str_alloc(action_item_t *item);
 
@@ -99,8 +99,8 @@ action_exec_data_t *action_exec_data_alloc(char *exec);
 int action_exec_data_init(action_exec_data_t *exec_data, char *exec);
 void action_exec_data_deinit(action_exec_data_t *exec_data);
 
-action_orient_data_t *action_orient_data_alloc(double orientation);
-int action_orient_data_init(action_orient_data_t *orient_data, double orientation);
+action_orient_data_t *action_orient_data_alloc(float orientation);
+int action_orient_data_init(action_orient_data_t *orient_data, float orientation);
 void action_orient_data_deinit(action_orient_data_t *orient_data);
 
 #endif

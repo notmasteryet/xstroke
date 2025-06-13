@@ -77,10 +77,10 @@ int rec_mode_add_parents(rec_mode_t *mode, rec_mode_list_t *parents)
 }
 
 int rec_mode_recognize(rec_mode_t *mode, stroke_t *stroke,
-		       action_t **action_ret, double *probability_ret)
+		       action_t **action_ret, float *probability_ret)
 {
     gesture_t *gesture;
-    double probability;
+    float probability;
     int i;
 
     for (i=0; i < mode->gestures.num_gestures; i++) {
@@ -91,7 +91,7 @@ int rec_mode_recognize(rec_mode_t *mode, stroke_t *stroke,
 	    *action_ret = &gesture->action;
 
 	    /* Break out of recursion early if we have absolute certainty */
-	    if (*probability_ret >= 1.0) {
+	    if (*probability_ret >= 1.0f) {
 		return 1;
 	    }
 	}

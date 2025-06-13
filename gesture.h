@@ -40,7 +40,7 @@ typedef struct gesture_list gesture_list_t;
 int gesture_init(gesture_t *gesture, action_t action, feature_list_t features);
 void gesture_deinit(gesture_t *gesture);
 
-double gesture_recognize(gesture_t *gesture, stroke_t *stroke);
+float gesture_recognize(gesture_t *gesture, stroke_t *stroke);
 
 int gesture_list_init(gesture_list_t *list);
 void gesture_list_deinit_shallow(gesture_list_t *list);

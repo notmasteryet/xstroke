@@ -114,7 +114,7 @@ void raw_free_classification(rec_engine_t *engine, stroke_t *stroke)
     /* Nothing to do here */
 }
 
-double raw_recognize_stroke(rec_engine_t *engine, stroke_t *stroke,
+float raw_recognize_stroke(rec_engine_t *engine, stroke_t *stroke,
 			     void *feature_data)
 {
     /* raw_engine recognizes anything, (else the veryify will never work) */

@@ -110,7 +110,7 @@ void grid_free_classification(rec_engine_t *engine, stroke_t *stroke)
     free(stroke->classifications[engine->num]);
 }
 
-double grid_recognize_stroke(rec_engine_t *engine, stroke_t *stroke,
+float grid_recognize_stroke(rec_engine_t *engine, stroke_t *stroke,
 			     void *feature_data)
 {
     char *sequence = (char *) stroke->classifications[engine->num];

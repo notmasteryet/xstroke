@@ -209,9 +209,9 @@ char *stroke_str_alloc(stroke_t *stroke)
 
 static void stroke_find_aspect(stroke_t *stroke)
 {
-    if (stroke->height / (double) stroke->width > ASPECT_THRESHOLD) {
+    if (stroke->height / (float) stroke->width > ASPECT_THRESHOLD) {
 	stroke->aspect = TALL_ASPECT;
-    } else if (stroke->width / (double) stroke->height > ASPECT_THRESHOLD) {
+    } else if (stroke->width / (float) stroke->height > ASPECT_THRESHOLD) {
 	stroke->aspect = WIDE_ASPECT;
     } else {
 	stroke->aspect = NORMAL_ASPECT;

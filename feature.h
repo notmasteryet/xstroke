@@ -37,7 +37,7 @@ typedef struct feature_list feature_list_t;
 int feature_init(feature_t *feature, struct rec *rec, char *engine_name, char *data_str);
 void feature_deinit(feature_t *feature);
 
-double feature_recognize(feature_t *feature, stroke_t *stroke);
+float feature_recognize(feature_t *feature, stroke_t *stroke);
 
 int feature_list_init(feature_list_t *list);
 void feature_list_deinit(feature_list_t *list);

@@ -549,18 +549,18 @@ static int seg_init_from_stroke_at(seg_t *seg, stroke_t *stroke, int first, int 
 
 static int seg_dir_from_slope(int dy, int dx)
 {
-    static double dir_thresholds[8] = {
-	-M_PI + 2 * M_PI * ( 1.0) / 16.0,
-	-M_PI + 2 * M_PI * ( 3.0) / 16.0,
-	-M_PI + 2 * M_PI * ( 5.0) / 16.0,
-	-M_PI + 2 * M_PI * ( 7.0) / 16.0,
-	-M_PI + 2 * M_PI * ( 9.0) / 16.0,
-	-M_PI + 2 * M_PI * (11.0) / 16.0,
-	-M_PI + 2 * M_PI * (13.0) / 16.0,
-	-M_PI + 2 * M_PI * (15.0) / 16.0
+    static float dir_thresholds[8] = {
+	-M_PI + 2 * M_PI * ( 1.0f) / 16.0f,
+	-M_PI + 2 * M_PI * ( 3.0f) / 16.0f,
+	-M_PI + 2 * M_PI * ( 5.0f) / 16.0f,
+	-M_PI + 2 * M_PI * ( 7.0f) / 16.0f,
+	-M_PI + 2 * M_PI * ( 9.0f) / 16.0f,
+	-M_PI + 2 * M_PI * (11.0f) / 16.0f,
+	-M_PI + 2 * M_PI * (13.0f) / 16.0f,
+	-M_PI + 2 * M_PI * (15.0f) / 16.0f
     };
     int d;
-    double slope = atan2(dy, dx);
+    float slope = atan2(dy, dx);
 
     for (d = 0; d < 8; d++) {
 	if (dir_thresholds[d] > slope) {
@@ -794,7 +794,7 @@ void dir_free_classification(rec_engine_t *engine, stroke_t *stroke)
     free(stroke->classifications[engine->num]);
 }
 
-double dir_recognize_stroke(rec_engine_t *engine, stroke_t *stroke,
+float dir_recognize_stroke(rec_engine_t *engine, stroke_t *stroke,
 			     void *feature_data)
 {
     char *sequence = (char *) stroke->classifications[engine->num];

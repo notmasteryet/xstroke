@@ -44,7 +44,7 @@ int rec_mode_add_gesture(rec_mode_t *mode, gesture_t *gesture);
 int rec_mode_add_gestures(rec_mode_t *mode, gesture_list_t *gestures);
 
 int rec_mode_recognize(rec_mode_t *mode, stroke_t *stroke,
-		       action_t **action_ret, double *probability_ret);
+		       action_t **action_ret, float *probability_ret);
 
 int rec_mode_list_init(rec_mode_list_t *list);
 void rec_mode_list_deinit_shallow(rec_mode_list_t *list);

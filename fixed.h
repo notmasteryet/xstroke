@@ -16,8 +16,8 @@
 #ifndef FIXED_H
 #define FIXED_H
 
-int f_to_fixed(double val, int precision);
-double fixed_to_f(long int val, int precision);
+int f_to_fixed(float val, int precision);
+float fixed_to_f(long int val, int precision);
 int fixed_to_i_round(long int val, int precision);
 int fixed_to_i_trunc(long int val, int precision);
 int fixed_adjust_precision(long int val, int precision_old, int precision_new);

@@ -39,7 +39,7 @@ void grid_classify_stroke(rec_engine_t *engine, stroke_t *stroke);
 char *grid_classification_str_alloc(rec_engine_t *engine, stroke_t *stroke);
 void grid_free_classification(rec_engine_t *engine, stroke_t *stroke);
 
-double grid_recognize_stroke(rec_engine_t *engine, stroke_t *stroke,
+float grid_recognize_stroke(rec_engine_t *engine, stroke_t *stroke,
 			     void *feature_data);
 
 int grid_set_option(rec_engine_t *engine, char *name, char *value);

@@ -31,7 +31,7 @@ void dir_length_classify_stroke(rec_engine_t *engine, stroke_t *stroke);
 char *dir_classification_str_alloc(rec_engine_t *engine, stroke_t *stroke);
 void dir_free_classification(rec_engine_t *engine, stroke_t *stroke);
 
-double dir_recognize_stroke(rec_engine_t *engine, stroke_t *stroke,
+float dir_recognize_stroke(rec_engine_t *engine, stroke_t *stroke,
 			     void *feature_data);
 
 int dir_set_option(rec_engine_t *engine, char *name, char *value);

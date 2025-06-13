@@ -33,7 +33,7 @@ struct rec_engine_funcs
     void   (*classify_stroke)(struct rec_engine *engine, stroke_t *stroke);
     char * (*classification_str_alloc)(struct rec_engine *engine, stroke_t *stroke);
     void   (*free_classification)(struct rec_engine *engine, stroke_t *stroke);
-    double (*recognize_stroke)(struct rec_engine *engine, stroke_t *stroke,
+    float (*recognize_stroke)(struct rec_engine *engine, stroke_t *stroke,
 			       void *feature_data);
     int    (*set_option)(struct rec_engine *engine, char *option, char *value);
 };
@@ -66,7 +66,7 @@ void rec_engine_classify_stroke(rec_engine_t *engine, stroke_t *stroke);
 char *rec_engine_classification_str_alloc(rec_engine_t *engine, stroke_t *stroke);
 void rec_engine_free_classification(rec_engine_t *engine, stroke_t *stroke);
 
-double rec_engine_recognize_stroke(rec_engine_t *engine, stroke_t *stroke,
+float rec_engine_recognize_stroke(rec_engine_t *engine, stroke_t *stroke,
 				   void *feature_data);
 
 int rec_engine_set_option(rec_engine_t *engine, char *name, char *value);

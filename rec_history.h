@@ -28,26 +28,26 @@ struct rec_history
     int y;
     int width;
     int height;
-    double orientation;
+    float orientation;
 
     int x_history[RH_POS_SAMPLES];
     int y_history[RH_POS_SAMPLES];
     int width_history[RH_SIZE_SAMPLES];
     int height_history[RH_SIZE_SAMPLES];
-    double orientation_history[RH_ORIENTATION_SAMPLES];
+    float orientation_history[RH_ORIENTATION_SAMPLES];
 };
 typedef struct rec_history rec_history_t;
 
 int rec_history_init(rec_history_t *history, int x, int y,
 		     int width, int height,
-		     double orientation);
+		     float orientation);
 void rec_history_deinit(rec_history_t *history);
 
 void rec_history_rotate_for_orientation(rec_history_t *history, int *x, int *y);
 
 void rec_history_update_position(rec_history_t *history, int x, int y);
 void rec_history_update_size(rec_history_t *history, int width, int height);
-void rec_history_nudge_orientation(rec_history_t *history, double correction);
+void rec_history_nudge_orientation(rec_history_t *history, float correction);
 
 #endif
 

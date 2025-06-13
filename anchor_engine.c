@@ -53,7 +53,7 @@ int anchor_priv_alloc(rec_engine_t *engine)
 	return ENOMEM;
     }
 
-    priv->border_width_ratio = ANCHOR_DEFAULT_BORDER_WIDTH_PERCENT / 100.0;
+    priv->border_width_ratio = ANCHOR_DEFAULT_BORDER_WIDTH_PERCENT / 100.0f;
     engine->priv = priv;
     return 0;
 }
@@ -77,14 +77,14 @@ void anchor_feature_data_free(rec_engine_t *engine, void *feature_data)
 void anchor_classify_stroke(rec_engine_t *engine, stroke_t *stroke)
 {
     anchor_priv_t *priv = engine->priv;
-    double bwr = priv->border_width_ratio;
+    float bwr = priv->border_width_ratio;
     int x_thresh_low, x_thresh_high;
     int y_thresh_low, y_thresh_high;
 
     x_thresh_low = f_to_fixed(engine->rec->width * bwr, stroke->precision_bits);
-    x_thresh_high = f_to_fixed(engine->rec->width * (1.0 - bwr), stroke->precision_bits);
+    x_thresh_high = f_to_fixed(engine->rec->width * (1.0f - bwr), stroke->precision_bits);
     y_thresh_low = f_to_fixed(engine->rec->height * bwr, stroke->precision_bits);
-    y_thresh_high = f_to_fixed(engine->rec->height * (1.0 - bwr), stroke->precision_bits);
+    y_thresh_high = f_to_fixed(engine->rec->height * (1.0f - bwr), stroke->precision_bits);
 
     stroke->classifications[engine->num] = 
 	grid_stroke_sequence_alloc(stroke,
@@ -102,7 +102,7 @@ void anchor_free_classification(rec_engine_t *engine, stroke_t *stroke)
     free(stroke->classifications[engine->num]);
 }
 
-double anchor_recognize_stroke(rec_engine_t *engine, stroke_t *stroke,
+float anchor_recognize_stroke(rec_engine_t *engine, stroke_t *stroke,
 			       void *feature_data)
 {
     char *sequence = (char *) stroke->classifications[engine->num];
@@ -117,7 +117,7 @@ int anchor_set_option(rec_engine_t *engine, char *option, char *value)
 
     priv = (anchor_priv_t *) engine->priv;
     if (strcmp(option, "BorderWidthPercent") == 0) {
-	priv->border_width_ratio = atof(value) / 100.0;
+	priv->border_width_ratio = atof(value) / 100.0f;
 	return 0;
     }
 
