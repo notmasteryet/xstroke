@@ -16,11 +16,7 @@
 #ifndef ACTION_ITEM_H
 #define ACTION_ITEM_H
 
-#include <X11/X.h>
-#define XK_MISCELLANY
-#define XK_XKB_KEYS
-#include <X11/keysymdef.h>
-#include <X11/Xutil.h>
+#include "utils.h"
 
 enum action_type
 {

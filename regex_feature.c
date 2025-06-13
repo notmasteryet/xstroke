@@ -53,6 +53,7 @@ regex_t *regex_feature_alloc(char *regex_str)
 
 void regex_feature_free(regex_t *regex)
 {
+    if (!regex) return;
     regfree(regex);
     free(regex);
 }

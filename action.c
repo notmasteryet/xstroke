@@ -20,8 +20,6 @@
 #include <math.h>
 #include <errno.h>
 
-#include <X11/Xlib.h>
-
 #include "xstroke.h"
 #include "rec.h"
 #include "action.h"

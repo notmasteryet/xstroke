@@ -1,3 +1,0 @@
-bresenham.o bresenham.o: bresenham.c bresenham.h
-
-bresenham.h:

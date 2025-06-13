@@ -23,13 +23,12 @@
 #include "rec_callback.h"
 #include "rec_mode.h"
 #include "stroke.h"
-#include "log.h"
+
+//#define LOG_REC
 
 #define REC_GLOBAL_MODE_NAME "__GLOBAL__"
 #define REC_FALLBACK_MODE_NAME "__FALLBACK__"
 #define REC_UNKNOWN_STROKE_STR  "<unknown>"
-#define REC_LOG_FILE_NAME     "strokes.log"
-#define REC_ERR_LOG_FILE_NAME "errors.log"
 
 struct rec
 {
@@ -49,10 +48,6 @@ struct rec
 
     int width;
     int height;
-
-    log_t log;
-    log_t err_log;
-    int log_raw;
 
     int rotation;
     double rotation_limit;

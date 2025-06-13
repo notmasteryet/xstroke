@@ -51,23 +51,6 @@ int rec_init(rec_t *rec, args_t *args, int width, int height)
 
     rec->width = width;
     rec->height = height;
-
-    /* We need the logs in place before we do anything else */
-    sprintf_alloc(&log_file, "%s/%s", args->logdir, REC_LOG_FILE_NAME);
-    err = log_init(&rec->log, log_file, args->logmax);
-    free(log_file);
-    if (err) {
-	fprintf(stderr, "%s: An error occurred during log_init\n", __FUNCTION__);
-	return err;
-    }
-
-    sprintf_alloc(&log_file, "%s/%s", args->logdir, REC_ERR_LOG_FILE_NAME);
-    err = log_init(&rec->err_log, log_file, args->logmax);
-    free(log_file);
-    if (err) {
-	fprintf(stderr, "%s: An error occurred during log_init\n", __FUNCTION__);
-	return err;
-    }
     
     rec_engine_list_init(&rec->engines);
     if (args->lograw) {
@@ -116,8 +99,6 @@ void rec_deinit(rec_t *rec)
     int i;
     rec_callback_t *cb, *prev_cb;
 
-    log_deinit(&rec->log);
-    log_deinit(&rec->err_log);
     stroke_deinit(&rec->stroke);
     rec_history_deinit(&rec->history);
 
@@ -307,6 +288,7 @@ action_t *recognize_stroke(rec_t *rec, stroke_t *stroke)
     }
 
     /* Log this stroke */
+#ifdef LOG_REC    
     if (action) {
 	a_str = action_str_alloc(action);
     } else {
@@ -324,13 +306,9 @@ action_t *recognize_stroke(rec_t *rec, stroke_t *stroke)
 	free(c_str);
     }
     sprintf_append_alloc(&msg, " }\n");
-
-    log_msg(&rec->log, msg);
-    if (action == NULL) {
-	log_msg(&rec->err_log, msg);
-    }
-
+    fputs(msg, stderr);
     free(msg);
+#endif
 
     for (i=0; i < rec->engines.num_engines; i++) {
 	rec_engine_free_classification(rec->engines.engines[i], stroke);
@@ -396,6 +374,7 @@ int rec_verify(rec_t *rec, char *file_name)
 
 static void log_mode_change(rec_t *rec, rec_mode_t *mode)
 {
+#ifdef LOG_REC    
     char *msg;
     static int first_change = 1;
 
@@ -407,10 +386,9 @@ static void log_mode_change(rec_t *rec, rec_mode_t *mode)
     }
     sprintf_append_alloc(&msg, "Mode \"%s\" {\n", mode->name);
 
-    log_msg(&rec->log, msg);
-    log_msg(&rec->err_log, msg);
-
+    fputs(msg, stderr);
     free(msg);
+#endif
 }
 
 static void perform_action(rec_t *rec, action_t *action)

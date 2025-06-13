@@ -35,17 +35,13 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-ACLOCAL = ${SHELL} /home/austin/xstroke-0.6/missing --run aclocal-1.7
 AMDEP_FALSE = #
 AMDEP_TRUE = 
-AMTAR = ${SHELL} /home/austin/xstroke-0.6/missing --run tar
-AUTOCONF = ${SHELL} /home/austin/xstroke-0.6/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/austin/xstroke-0.6/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/austin/xstroke-0.6/missing --run automake-1.7
 AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -g -O2
+#CFLAGS = -O2
+CFLAGS = -g -O0
 CPP = gcc -E
 CPPFLAGS = 
 CYGPATH_W = echo
@@ -70,7 +66,6 @@ LTLIBOBJS =
 MAINT = #
 MAINTAINER_MODE_FALSE = 
 MAINTAINER_MODE_TRUE = #
-MAKEINFO = ${SHELL} /home/austin/xstroke-0.6/missing --run makeinfo
 OBJEXT = o
 PACKAGE = xstroke
 PACKAGE_BUGREPORT = xstroke@xstroke.org
@@ -84,11 +79,11 @@ SET_MAKE =
 SHELL = /bin/sh
 STRIP = 
 VERSION = 0.6
-XSTROKE_CFLAGS = -I/usr/X11R6/include -I/usr/include/freetype2 -I/usr/include/freetype2/freetype2 -I/usr/include/freetype2/freetype2/config  
-XSTROKE_LIBS = -L/usr/X11R6/lib -lXft -lX11 -lfreetype -lXrender -lfontconfig  
-X_CFLAGS =  -I/usr/X11R6/include
+XSTROKE_CFLAGS =
+XSTROKE_LIBS =
+X_CFLAGS =
 X_EXTRA_LIBS = 
-X_LIBS =  -L/usr/X11R6/lib
+X_LIBS =
 X_PRE_LIBS =  -lSM -lICE
 YACC = bison -y
 ac_ct_CC = gcc
@@ -124,17 +119,13 @@ xstroke_SOURCES = \
 	action_item.c action_item.h \
 	anchor_engine.c anchor_engine.h \
 	args.c args.h \
-	backing.c backing.h \
 	bresenham.c bresenham.h \
-	brush.c brush.h	brush-image.h brush-shadow.h \
-	control_win.c control_win.h \
 	dir_engine.c dir_engine.h \
 	feature.c feature.h \
 	fixed.c fixed.h \
 	gesture.c gesture.h \
 	grid.c grid.h \
 	grid_engine.c grid_engine.h \
-	log.c log.h \
 	matrix.c matrix.h \
 	option.c option.h \
 	raw_engine.c raw_engine.h \
@@ -148,24 +139,21 @@ xstroke_SOURCES = \
 	regex_feature.c regex_feature.h \
 	sprintf_alloc.c sprintf_alloc.h \
 	stroke.c stroke.h \
-	tray.c tray.h \
-	xlp.c xlp.h \
-	xlp_callback.c xlp_callback.h \
-	xlp_color.c xlp_color.h \
-	xlp_timeout.c xlp_timeout.h \
-	xlp_win.c xlp_win.h \
+	utils.c utils.h \
 	xstroke.c xstroke.h
 
 
 BUILT_SOURCES = rec_parse.h rec_lex.h rec_lex.c
 AM_YFLAGS = -d
 
-xstroke_LDADD = -L/usr/X11R6/lib -lXft -lX11 -lfreetype -lXrender -lfontconfig   -lm -lpthread $(X_LIBS) -lXpm -lXtst
-AM_CFLAGS = -I/usr/X11R6/include -I/usr/include/freetype2 -I/usr/include/freetype2/freetype2 -I/usr/include/freetype2/freetype2/config   -DXSTROKE_CONF_DIR='"$(sysconfdir)/xstroke"' $(X_CFLAGS)
+xstroke_LDADD =  -lm -lpthread $(X_LIBS)
+AM_CFLAGS = $(X_CFLAGS)
 
-EXTRA_DIST = xstroke_active.xpm xstroke_inactive.xpm etc/alphabet
+EXTRA_DIST = etc/alphabet
 
-configdir = $(sysconfdir)/xstroke
+#configdir = $(sysconfdir)/xstroke
+#config_DATA = etc/alphabet
+configdir = ./conf
 config_DATA = etc/alphabet
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -176,17 +164,14 @@ bin_PROGRAMS = xstroke$(EXEEXT)
 PROGRAMS = $(bin_PROGRAMS)
 
 am_xstroke_OBJECTS = action.$(OBJEXT) action_item.$(OBJEXT) \
-	anchor_engine.$(OBJEXT) args.$(OBJEXT) backing.$(OBJEXT) \
-	bresenham.$(OBJEXT) brush.$(OBJEXT) control_win.$(OBJEXT) \
+	anchor_engine.$(OBJEXT) args.$(OBJEXT) bresenham.$(OBJEXT) \
 	dir_engine.$(OBJEXT) feature.$(OBJEXT) fixed.$(OBJEXT) \
 	gesture.$(OBJEXT) grid.$(OBJEXT) grid_engine.$(OBJEXT) \
-	log.$(OBJEXT) matrix.$(OBJEXT) option.$(OBJEXT) \
+	matrix.$(OBJEXT) option.$(OBJEXT) \
 	raw_engine.$(OBJEXT) rec.$(OBJEXT) rec_callback.$(OBJEXT) \
 	rec_engine.$(OBJEXT) rec_history.$(OBJEXT) rec_lex.$(OBJEXT) \
 	rec_mode.$(OBJEXT) rec_parse.$(OBJEXT) regex_feature.$(OBJEXT) \
-	sprintf_alloc.$(OBJEXT) stroke.$(OBJEXT) tray.$(OBJEXT) \
-	xlp.$(OBJEXT) xlp_callback.$(OBJEXT) xlp_color.$(OBJEXT) \
-	xlp_timeout.$(OBJEXT) xlp_win.$(OBJEXT) xstroke.$(OBJEXT)
+	sprintf_alloc.$(OBJEXT) stroke.$(OBJEXT) utils.$(OBJEXT) xstroke.$(OBJEXT)
 xstroke_OBJECTS = $(am_xstroke_OBJECTS)
 xstroke_DEPENDENCIES =
 xstroke_LDFLAGS =
@@ -196,12 +181,11 @@ depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
 DEP_FILES = ./$(DEPDIR)/action.Po ./$(DEPDIR)/action_item.Po \
 	./$(DEPDIR)/anchor_engine.Po ./$(DEPDIR)/args.Po \
-	./$(DEPDIR)/backing.Po ./$(DEPDIR)/bresenham.Po \
-	./$(DEPDIR)/brush.Po ./$(DEPDIR)/control_win.Po \
+	./$(DEPDIR)/bresenham.Po \
 	./$(DEPDIR)/dir_engine.Po ./$(DEPDIR)/feature.Po \
 	./$(DEPDIR)/fixed.Po ./$(DEPDIR)/gesture.Po \
 	./$(DEPDIR)/grid.Po ./$(DEPDIR)/grid_engine.Po \
-	./$(DEPDIR)/log.Po ./$(DEPDIR)/matrix.Po \
+	./$(DEPDIR)/matrix.Po \
 	./$(DEPDIR)/option.Po ./$(DEPDIR)/raw_engine.Po \
 	./$(DEPDIR)/rec.Po ./$(DEPDIR)/rec_callback.Po \
 	./$(DEPDIR)/rec_engine.Po \
@@ -209,10 +193,7 @@ DEP_FILES = ./$(DEPDIR)/action.Po ./$(DEPDIR)/action_item.Po \
 	./$(DEPDIR)/rec_mode.Po ./$(DEPDIR)/rec_parse.Po \
 	./$(DEPDIR)/regex_feature.Po \
 	./$(DEPDIR)/sprintf_alloc.Po ./$(DEPDIR)/stroke.Po \
-	./$(DEPDIR)/tray.Po ./$(DEPDIR)/xlp.Po \
-	./$(DEPDIR)/xlp_callback.Po \
-	./$(DEPDIR)/xlp_color.Po ./$(DEPDIR)/xlp_timeout.Po \
-	./$(DEPDIR)/xlp_win.Po ./$(DEPDIR)/xstroke.Po
+	./$(DEPDIR)/utils.Po ./$(DEPDIR)/xstroke.Po
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
@@ -220,10 +201,7 @@ LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 DIST_SOURCES = $(xstroke_SOURCES)
 DATA = $(config_DATA)
 
-DIST_COMMON = README $(srcdir)/Makefile.in $(srcdir)/configure AUTHORS \
-	COPYING ChangeLog INSTALL Makefile.am NEWS TODO aclocal.m4 \
-	config.h.in configure configure.ac depcomp install-sh missing \
-	mkinstalldirs
+DIST_COMMON = README AUTHORS COPYING
 SOURCES = $(xstroke_SOURCES)
 
 all: $(BUILT_SOURCES) config.h
@@ -248,22 +226,8 @@ $(srcdir)/configure: # $(srcdir)/configure.ac $(ACLOCAL_M4) $(CONFIGURE_DEPENDEN
 $(ACLOCAL_M4): # configure.ac 
 	cd $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
 
-config.h: stamp-h1
-	@if test ! -f $@; then \
-	  rm -f stamp-h1; \
-	  $(MAKE) stamp-h1; \
-	else :; fi
+config.h:
 
-stamp-h1: $(srcdir)/config.h.in $(top_builddir)/config.status
-	@rm -f stamp-h1
-	cd $(top_builddir) && $(SHELL) ./config.status config.h
-
-$(srcdir)/config.h.in: # $(top_srcdir)/configure.ac $(ACLOCAL_M4) 
-	cd $(top_srcdir) && $(AUTOHEADER)
-	touch $(srcdir)/config.h.in
-
-distclean-hdr:
-	-rm -f config.h stamp-h1
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 install-binPROGRAMS: $(bin_PROGRAMS)
 	@$(NORMAL_INSTALL)
@@ -293,46 +257,37 @@ xstroke$(EXEEXT): $(xstroke_OBJECTS) $(xstroke_DEPENDENCIES)
 	$(LINK) $(xstroke_LDFLAGS) $(xstroke_OBJECTS) $(xstroke_LDADD) $(LIBS)
 
 mostlyclean-compile:
-	-rm -f *.$(OBJEXT) core *.core
+	-rm -f *.$(OBJEXT) core *.core .deps/*.Po
 
 distclean-compile:
 	-rm -f *.tab.c
 
-include ./$(DEPDIR)/action.Po
-include ./$(DEPDIR)/action_item.Po
-include ./$(DEPDIR)/anchor_engine.Po
-include ./$(DEPDIR)/args.Po
-include ./$(DEPDIR)/backing.Po
-include ./$(DEPDIR)/bresenham.Po
-include ./$(DEPDIR)/brush.Po
-include ./$(DEPDIR)/control_win.Po
-include ./$(DEPDIR)/dir_engine.Po
-include ./$(DEPDIR)/feature.Po
-include ./$(DEPDIR)/fixed.Po
-include ./$(DEPDIR)/gesture.Po
-include ./$(DEPDIR)/grid.Po
-include ./$(DEPDIR)/grid_engine.Po
-include ./$(DEPDIR)/log.Po
-include ./$(DEPDIR)/matrix.Po
-include ./$(DEPDIR)/option.Po
-include ./$(DEPDIR)/raw_engine.Po
-include ./$(DEPDIR)/rec.Po
-include ./$(DEPDIR)/rec_callback.Po
-include ./$(DEPDIR)/rec_engine.Po
-include ./$(DEPDIR)/rec_history.Po
-include ./$(DEPDIR)/rec_lex.Po
-include ./$(DEPDIR)/rec_mode.Po
-include ./$(DEPDIR)/rec_parse.Po
-include ./$(DEPDIR)/regex_feature.Po
-include ./$(DEPDIR)/sprintf_alloc.Po
-include ./$(DEPDIR)/stroke.Po
-include ./$(DEPDIR)/tray.Po
-include ./$(DEPDIR)/xlp.Po
-include ./$(DEPDIR)/xlp_callback.Po
-include ./$(DEPDIR)/xlp_color.Po
-include ./$(DEPDIR)/xlp_timeout.Po
-include ./$(DEPDIR)/xlp_win.Po
-include ./$(DEPDIR)/xstroke.Po
+-include ./$(DEPDIR)/action.Po
+-include ./$(DEPDIR)/action_item.Po
+-include ./$(DEPDIR)/anchor_engine.Po
+-include ./$(DEPDIR)/args.Po
+-include ./$(DEPDIR)/bresenham.Po
+-include ./$(DEPDIR)/dir_engine.Po
+-include ./$(DEPDIR)/feature.Po
+-include ./$(DEPDIR)/fixed.Po
+-include ./$(DEPDIR)/gesture.Po
+-include ./$(DEPDIR)/grid.Po
+-include ./$(DEPDIR)/grid_engine.Po
+-include ./$(DEPDIR)/matrix.Po
+-include ./$(DEPDIR)/option.Po
+-include ./$(DEPDIR)/raw_engine.Po
+-include ./$(DEPDIR)/rec.Po
+-include ./$(DEPDIR)/rec_callback.Po
+-include ./$(DEPDIR)/rec_engine.Po
+-include ./$(DEPDIR)/rec_history.Po
+-include ./$(DEPDIR)/rec_lex.Po
+-include ./$(DEPDIR)/rec_mode.Po
+-include ./$(DEPDIR)/rec_parse.Po
+-include ./$(DEPDIR)/regex_feature.Po
+-include ./$(DEPDIR)/sprintf_alloc.Po
+-include ./$(DEPDIR)/stroke.Po
+-include ./$(DEPDIR)/utils.Po
+-include ./$(DEPDIR)/xstroke.Po
 
 .c.o:
 	if $(COMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" \
