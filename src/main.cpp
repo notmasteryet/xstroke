@@ -60,6 +60,11 @@ void loop() {
       case BUTTON_PRESSED:
         Serial.printf("BUTTON! %d\n", recognition_get_button());
         break;
+      case MODE_CHANGE:
+        int p; const char *s;
+        recognition_get_mode(&p, &s);
+        Serial.printf("MODE: %s %s\n", s, p? "lock" : "shift");
+        break;
     }
   }
   delay(20);
