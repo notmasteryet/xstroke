@@ -49,6 +49,7 @@ var lex_c = regs.map((re, i) => {
             else if (ch == "]") f = true;
         }
     }
+    expr += "[\x00]";
     return `
 int lex_g${i}(const char *s) {
     const char *YYCURSOR = s, *YYMARKER;
