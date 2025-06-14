@@ -1,0 +1,3 @@
+[submodule "lib/PS2Mouse"]
+	path = lib/PS2Mouse
+	url = https://github.com/notmasteryet/PS2Mouse.git
